@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         One-Click Login For Recruitment
-// @version      1.1
+// @version      1.2.0
 // @namespace    thisismoon
 // @description  Allows for immediate switching to another nation after recruitment TG has been sent
 // @author       Moon
