@@ -22,13 +22,12 @@ function toTitleCase(str) {
 }
 
 function injectSwitcher(regions) {
-    const headerContent = document.getElementsByTagName('h1')[0];
-
     const params = new URLSearchParams(window.location.search);
     const tgto = params.get('tgto');
     const message = params.get('message');
 
     const templateBtn = document.querySelector("a.button, button");
+    if (!templateBtn) return;
 
     const btnClasses = templateBtn.className;
     const btnStyles = templateBtn.getAttribute("style");
@@ -39,9 +38,14 @@ function injectSwitcher(regions) {
     const container = document.createElement("div");
     container.style.marginTop = "0.5em";
 
-    regions.forEach(({ region, nation, password }) => {
+    const buttons = [];
+
+    regions.forEach(({ region, nation, password }, index) => {
         const btn = document.createElement("a");
-        btn.textContent = `Switch to ${toTitleCase(region.replace(/_/g, " "))}`;
+
+        const keybind = index + 1;
+
+        btn.textContent = `[${keybind}] Switch to ${toTitleCase(region.replace(/_/g, " "))}`;
 
         const url = new URL(window.location.origin + "/page=compose_telegram");
         url.searchParams.set("tgto", tgto);
@@ -56,9 +60,27 @@ function injectSwitcher(regions) {
         btn.style.marginRight = "0.5em";
 
         container.appendChild(btn);
+        buttons.push(btn);
     });
 
     header.insertAdjacentElement("afterend", container);
+
+    document.addEventListener("keydown", (e) => {
+        if (["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) return;
+
+        const num = parseInt(e.key, 10);
+        if (!isNaN(num) && num >= 1 && num <= buttons.length) {
+            buttons[num - 1].click();
+        }
+    });
+
+    window.addEventListener("load", () => {
+        const sendBtn = document.querySelector(".sendtgbutton")
+
+        if (sendBtn) {
+            sendBtn.focus();
+        }
+    });
 }
 
 function injectSettingsPage(regions) {
