@@ -1,8 +1,10 @@
-Tampermonkey/Greasemonkey script which allows you to immediately switch to another nation after sending a recruitment telegram. Makes it easier for you to recruit for multiple regions at once.
+Tampermonkey/Greasemonkey script which allows you to switch to another nation after sending a recruitment telegram with the click of a button. Makes it easier for you to recruit for multiple regions at once.
 
 Made to be used with [UPC's Asperta recruitment bot](https://www.nationstates.net/page=dispatch/id=2557613).
 
 Might be slightly janky.
+
+**IMPORTANT:** Users are to note that they MUST NOT deliberately attempt to circumvent being rate-limited while recruiting for multiple regions (by immediately switching to another nation after sending a telegram) through this script. This is an **[illegal action](https://forum.nationstates.net/viewtopic.php?p=43409078#p43409078)** that will result in you being punished if caught.
 
 # Setup
 
